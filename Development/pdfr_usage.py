@@ -7,13 +7,11 @@ This script illustrates how to implement the functions from 'PDFReader' into a
 """
 
 # Method 1
-from PDFReader import readPDF, printPDF
+from PDFReader import readPDF
 
-pdf1 = readPDF('test_files/Test2PDF.pdf')
-printPDF(pdf1)
+pdf1 = readPDF('test_files/Test1PDF.pdf')
 
 # Method 2 
 import PDFReader
 
 pdf2 = PDFReader.readPDF('test_files/Test3PDF.pdf')
-PDFReader.printPDF(pdf2)
