@@ -17,3 +17,5 @@ def extractTextFromDocx(fileName, imagePath):
     Text is stored in variable. Images are stored in file path.
     '''
     text = docx2txt.process(fileName, imagePath) #first parameter is file name and second is file path for extracted images
+    
+    return text
