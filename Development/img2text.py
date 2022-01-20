@@ -1,5 +1,5 @@
-# setup
-# Import modules
+#img2text.py
+
 from PIL import Image
 import pytesseract
 

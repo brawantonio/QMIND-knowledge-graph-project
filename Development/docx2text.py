@@ -1,3 +1,5 @@
+#docx2text.py
+
 import sys
 
 try:
