@@ -1,6 +1,6 @@
 #doc2text.py
 
-import os,time
+import os, time
 from pwd import getpwuid
 import sys
 import re
