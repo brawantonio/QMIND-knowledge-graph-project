@@ -1,0 +1,7 @@
+python == 
+
+pandas==
+numpy==
+Keras==
+tensorflow==
+matplotlibt==
