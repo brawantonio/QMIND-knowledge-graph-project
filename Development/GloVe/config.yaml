@@ -1,0 +1,28 @@
+# first step parameters
+## path to the input file, should be a pickle file storing a list of words
+input_filepath: ./vocab_list_pickle
+## number of tokens in the training vocabulary
+vocab_size: 100000
+## size of the context window
+window_size: 10
+## the number of paritions to divide cooccurence matrix in 
+num_partitions: 10
+## chunk size of h5py.Dataset
+chunk_size: 1000000
+
+# when used in first step, specify the output directory of cooccurrence entries
+# when used in second step, specify where to read cooccurrence entries from
+cooccurrence_dir: ./output
+
+# second step parameters
+## output path for the trained word vectors 
+output_filepath: ./output/trained_word_vecs
+## pytorch training parameters
+batch_size: 32
+num_epochs: 20
+device: cpu
+learning_rate: 0.05
+## glove paremeters
+embedding_size: 100
+x_max: 100
+alpha: 0.75
