@@ -50,6 +50,6 @@ class KingstonCrawler(CrawlSpider):
             'status': response.status,
             'lang': response.headers.getlist('Content-Language'),
             'updated': response.headers.getlist('Last-Modified'),
-            'text': response.text
+            'text': str(response.body)
         }
         #counter += 1
