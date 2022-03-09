@@ -1,7 +1,7 @@
 #doc2text.py
 
 import os, time
-from pwd import getpwuid
+from pathlib import Path
 import sys
 import re
 from PIL import Image
@@ -30,12 +30,12 @@ try:
 except:
     print('Error:\cv2 library has not been installed.\n\tTry \'pip install pytesseract\' in venv.')
     sys.exit(0)
-pytesseract.pytesseract.tesseract_cmd = '/opt/homebrew/Cellar/tesseract/5.0.1/bin/tesseract'
+pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 #----------class to extract metadata ------------------------------------------------------------
 class metadata:
     def __init__(self, filepath):
-        self.owner = getpwuid(os.stat(filepath).st_uid).pw_name
+        self.owner = Path(filepath).owner()
         self.ext = os.path.splitext(filepath)[1]
         self.size = os.path.getsize(filepath)
         self.date_mod = time.ctime(os.path.getmtime(filepath))

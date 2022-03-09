@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang=en xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta charset="utf-8">
+<title>City Of Kingston - Public Website</title>
+<link rel=stylesheet type="text/css" href="/error/css/client.css">
+<meta name="viewport" content="width=device-width, inital-scale=1">
+<script type="text/javascript">
+	var _gaq = _gaq| [];
+
+	_gaq.push(['_setAccount', 'UA-29839431-2']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+			var ga = document.createElement('script');
+			ga.src = ('https:' == documt.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			ga.setAttribute('async', 'true');
+			document.documentElement.firstChild.appendChild(ga);
+		})();
+</script>
+
+</head>
+<body>
+<div id="container">
+    <div id="siteContent">
+	<div id="header">
+	    <div id="city-logo">
+		<a href="http://www.cityofkingston.ca"><img longdesc="" src="/apps/redirect/img/city-logo.png" longdesc="Go to the City of Kingston Public Website" alt="Go to the City of Kingston Public Website" style="width: 100%"/></a>
+	    </div>
+	</div>
+    <div id="mainContent">
+	<h1>Page not found</h1>
+	<p>The requested page was not found on this server.</p>
+        <p id="message">	
+                <script>
+                if (typeof document.referrer !== "undefined")
+                   document.writeln("<p> The link on the <a href='" + document.referrer + "'>referring page</a> seems to be wrong or outdated. Please inform the author of that page about the error.");
+                else
+                   document.writeln("<p> If you entered the URL manually please check your spelling and try again. </p>");
+
+                </script>
+
+<!--[if lte IE 9]>
+    <script src="https://api.cludo.com/scripts/xdomain.js" slave="https://api.cludo.com/proxy.html"></script>
+<![endif]-->
+<script id="cludo-404-script" data-cid="320" data-eid="8798">
+(function () {
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = 'https://customer.cludo.com/scripts/404/cludo-404.js';
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+})();
+</script>
+		<p>
+		   If you need immediate assistance, please contact:
+ 		   <h3>By Phone</h3>
+		   <p>Our Municipal Call Centre: Dial 613-546-0000</p> 
+
+		</p>
+	    </div>
+	    <div id="footer"></DIV>
+	</div>
+    </body>
+</html>

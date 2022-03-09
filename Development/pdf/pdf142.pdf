@@ -1,0 +1,46 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <TITLE>City of Kingston | File not available</TITLE>
+   <link rel="stylesheet" href="/apps/docs/css/bootstrap.min.css">
+   <link rel=stylesheet type="text/css" href="/apps/docs/css/cok.css">
+</script>
+
+</HEAD>
+<BODY onload="_sz.push(['event', 'Docs', 'hit', 'nh30_fairwayhills.pdf']);">
+   <DIV id=container>
+      <DIV id=siteContent>
+         <header id="header">
+             <div id="city-logo">
+                <a href="http://www.cityofkingston.ca"><img longdesc="" src="/apps/docs/img/city-logo.png" longdesc="Go to the City of Kingston Public Website" alt="Go to the City of Kingston Public Website" style="width:100%"/></a>
+             </div>
+        </header>
+        <div id="mainContent" class="container">
+            <h1>File not available</h1>
+            <p>The file <strong>"nh30_fairwayhills.pdf"</strong> has been archived and is no longer available on the City website.</p>
+			<p>Please click on the <strong>Submit Request</strong> button below to request a copy of this document.</p>
+			<p>A copy will be sent directly to your email within 5 business days.</p>
+            <div>
+				<a class="btn btn-primary" onclick="_sz.push(['event', 'Docs', 'to-crm', 'nh30_fairwayhills.pdf']);" href="https://myaccount.cityofkingston.ca/fed/idpInitiated?entityId=RNT-SP-1-dUom5ZEsfr6GYa3KeHZhllPH3Y0%3D&relayState=https%3A%2F%2Fmycity.cityofkingston.ca%2Fapp%2Fask%2Fc%2F2401%2FIncident.Subject%2FRequest%2Bfor%2Bnh30_fairwayhills.pdf%2FIncident.Threads%2FPlease%2Bemail%2Bme%2Ba%2Bcopy%2Bof%253A%250Ahttps%253A%252F%252Fwww.cityofkingston.ca%252Fdocuments%252F10180%252F5126796%252Fnh30_fairwayhills.pdf%250A%250A">Submit Request</a> <a class="btn btn-secondary" href="">Cancel</a>
+			</div>
+         </div>
+         <DIV id=footer></DIV>
+     </div>
+</DIV>
+<script type="text/javascript">
+	/*<![CDATA[*/
+	(function() {
+	var sz = document.createElement('script'); sz.type = 'text/javascript'; sz.async = true;
+	sz.src = '////siteimproveanalytics.com/js/siteanalyze_563230.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sz, s);
+	})();
+	/*]]>*/
+</script>
+</BODY>
+</HTML>
+
