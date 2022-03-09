@@ -18,9 +18,7 @@ def process_links(links):
         yield link
 
 # %%
-#counter = 0
 class KingstonCrawler(CrawlSpider):
-    #global counter
     name = 'kingston'
     allowed_domains = ['www.cityofkingston.ca']
     start_urls = ['https://www.cityofkingston.ca/']
@@ -37,14 +35,7 @@ class KingstonCrawler(CrawlSpider):
             follow=True,
         ),
     )
-
     def parse(self, response):
-        #global counter
-        #create folder to hold scraped html files
-        # if not os.path.isdir('scrapy_crawler/scraped_pages'):
-        #     os.mkdir('scrapy_crawler/scraped_pages')
-        # with open("scrapy_crawler/scraped_pages/{}.html".format(counter), 'wb') as html_file:
-        #     html_file.write(response.body)
         yield {
             'url': response.url,
             'status': response.status,
@@ -52,4 +43,3 @@ class KingstonCrawler(CrawlSpider):
             'updated': response.headers.getlist('Last-Modified'),
             'text': str(response.body)
         }
-        #counter += 1
