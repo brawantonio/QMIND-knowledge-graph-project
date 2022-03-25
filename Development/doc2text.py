@@ -5,6 +5,7 @@ from pwd import getpwuid
 import sys
 import re
 from PIL import Image
+import fitz
 
 #-----------checking for dependencies--------------------------
 try: #docx2txt
@@ -67,21 +68,13 @@ def pdf2text(filepath):
 	return string
 
 #----------------- Alternative PDF text extractor -------------------------------------------
-
-def pdf2text(filepath, save_img = None):
-    '''
-    A function that extracts all images and text from pdfs.
-    Extracted images are stored in imagePath and text is returned.
-    Requirements: pip install PyMuPDF
-    Args: 
-        fileName (string): Path to pdf file
-        imagePath (string): Path where extracted images go
-    '''
+""" 
+def pdf2text(filepath, save_img = False):
     #create temp image path if no path to save extracted images is provided
-    if save_img == None:
-        if not os.path.isdir('temp_images_dir'):
-            os.mkdir('temp_images_dir')
-        return pdf2text(filepath, 'temp_images_dir')
+    dirpath = os.path.dirname(filepath)
+    if save_img:
+        if os.path.isdir(dirpath+'/temp_images_dir')==False:
+            os.mkdir(dirpath+'/temp_images_dir')
     
     pdf = fitz.open(filepath)
     #extract images
@@ -90,19 +83,18 @@ def pdf2text(filepath, save_img = None):
             xref = img[0]       #get XREF of image
             pix = fitz.Pixmap(pdf, xref)
             if pix.n < 5:       #image is GRAY or RGB
-                pix.save(f"{save_img}/Page%s-Image%s.png" % (page_index+1, image_index+1))
+                pix.save( dirpath+'/temp_images_dir'+'/page{}_image{}.png'.format(page_index+1, image_index+1) )
             else:               #CMYK: convert to RGB
                 pix1 = fitz.Pixmap(fitz.csRGB, pix)
-                pix1.save(f"{save_img}/Page%s-Image%s.png" % (page_index+1, image_index+1))
+                pix1.save( dirpath+'/temp_images_dir'+'/page{}_image{}.png'.format(page_index+1, image_index+1) )
                 pix1 = None
-
     #extract text
     text = ''
     with pdf as doc:
         for page in doc:
             text += page.get_text()
         return text
-
+"""
 
 #------------------- function to extract text from images -------------------------------------
 
