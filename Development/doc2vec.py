@@ -2,21 +2,35 @@ import os
 import pandas as pd
 import numpy as np
 import preprocessing
+from tkinter import Tk, filedialog
 
 #getting texts (this is independent of the doc2vec) 
 # This will go in the Hazelnut file
 #I need to import doc2text.py
-import doc2text
-dirpath = "/Users/braulioantonio/Documents/Python/Hazelnut/datasets/qmind_onboarding/"
-files_dictionary = doc2text.get_files(dirpath)
+import file2doc
+
+#-------- Getting the directory -----------------------
+root = Tk() # pointing root to Tk() to use it as Tk() in program.
+root.withdraw() # Hides small tkinter window.
+root.attributes('-topmost', True) # Opened windows will be active. above all windows despite of selection.
+
+dirpath = filedialog.askdirectory()+'/' # Returns opened path as str
+#print(open_file) 
+#dirpath = "/Users/braulioantonio/Documents/Python/Hazelnut/datasets/qmind_onboarding/"
+
+
+# ----------------------------- get files --------------------------------
+files_dictionary = file2doc.get_files(dirpath) 
 #files_dictionary
 
+# --------------------------------- Create data dataframe -----------------
+# this needs to be functionalized!!!!! 
 corpus_data = []
 
 for key in files_dictionary.keys():
     for file in files_dictionary[key]:
-        file_metadata = doc2text.metadata(dirpath + file)
-        corpus_data.append(doc2text.extract_text(dirpath+file, key) + file_metadata.all())
+        file_metadata = file2doc.metadata(dirpath + file)
+        corpus_data.append(file2doc.extract_text(dirpath+file, key) + file_metadata.all())
 
 
 # Extract title of project
@@ -35,6 +49,7 @@ df["text"] = df["title"] + " " + df["desc"]
 df["clean_text"] = df["text"].apply(preprocessing.stdtextpreprocessing)
 df = df[["title", "clean_text"]]
 
+#--------------------------------------------------------------
 
 #building bag of words and tokens This will go in doc2vec
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
