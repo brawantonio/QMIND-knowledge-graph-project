@@ -1,12 +1,10 @@
 from os import sendfile
 from flask import Flask, render_template, send_file, request, json
 
-from scripts.test import processText
-
+import scripts
+#from scripts.test import processText
 
 app = Flask(__name__)
-
-
 
 @app.route("/")
 def index():
@@ -29,7 +27,7 @@ def test():
     
     text = request.args.get('text')
 
-    data = processText(text)
+    data = scripts.test.processText(text)
     
     response = app.response_class(
             response=data,

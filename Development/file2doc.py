@@ -3,9 +3,11 @@
 import os, time
 from pwd import getpwuid
 import sys
-import re
-from PIL import Image
-import fitz
+#import re
+#from PIL import Image
+#import fitz
+from tkinter import Tk, filedialog
+
 
 #-----------checking for dependencies--------------------------
 try: #docx2txt
@@ -125,3 +127,13 @@ def extract_text(filepath,key):
     if key == 'pdf': return pdf2text(filepath)
     if key == 'img': return img2text(filepath)
 
+
+#-------------------------------- get directory ----------------------------------
+#-------- Getting the directory -----------------------
+def get_dirpath():
+    root = Tk() # pointing root to Tk() to use it as Tk() in program.
+    root.withdraw() # Hides small tkinter window.
+    root.attributes('-topmost', True) # Opened windows will be active. above all windows despite of selection.
+
+    dirpath = filedialog.askdirectory()+'/' # Returns opened path as str
+    return dirpath
