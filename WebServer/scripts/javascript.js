@@ -5,6 +5,9 @@ function clk()  {
     xhr.onload = function(e) {
         document.getElementById("blurbtext").innerHTML = xhr.response
     }
+    xhr.onerror = function(e) {
+        console.log(xhr.response);
+    }
     xhr.send();
 }
 
@@ -41,9 +44,14 @@ var voice = {
         voice.recog.onresult = (evt) => {
           said = evt.results[0][0].transcript.toLowerCase();
           console.log(said);
+          
+          voice.stop();
+
           // voice.sform.submit();
           // OR RUN AN AJAX/FETCH SEARCH
-          voice.stop();
+          document.getElementById("searchbar").value = said;
+
+          clk();
         };
    
         // (A5) ON SPEECH RECOGNITION ERROR
@@ -63,6 +71,7 @@ var voice = {
     start : () => {
       voice.recog.start();
       voice.sbtn.onclick = voice.stop;
+      document.getElementById("mic_container").className="active";
       console.log('on')
     },
    
@@ -70,6 +79,7 @@ var voice = {
     stop : () => {
       voice.recog.stop();
       voice.sbtn.onclick = voice.start;
+      document.getElementById("mic_container").className="";
       console.log('off')
     }
   };

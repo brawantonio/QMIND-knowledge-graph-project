@@ -37,12 +37,26 @@ body {
     top: 2px;
 }
 
-#micicon {
-    height: 2vw;
-    width: auto;
+#mic_container{
+    background-image: linear-gradient(to right,#82fddaca, #1bcc9a);
+    width: min-content;
+    display: inline-block;
+    height: auto;
+    border-radius: 100%;
     transform : translateX(5pt);
     position: relative;
     top: 7px;
+}
+#mic_container.active   {
+    transition: filter .2s ease-out;
+
+    filter: invert(100%);
+
+    border: 50pt;
+}
+
+#micicon {
+    height: 2vw;
 }
 
 #searchbar{

@@ -2,7 +2,7 @@ from os import sendfile
 from flask import Flask, render_template, send_file, request, json
 
 import scripts
-#from scripts.test import processText
+from scripts.test import processText
 
 app = Flask(__name__)
 
