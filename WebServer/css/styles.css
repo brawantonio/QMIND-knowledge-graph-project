@@ -32,6 +32,17 @@ body {
     height: 2vw;
     width: auto;
     transform : translateX(25pt);
+    padding-top: 10vw;
+    position: relative;
+    top: 2px;
+}
+
+#micicon {
+    height: 2vw;
+    width: auto;
+    transform : translateX(5pt);
+    position: relative;
+    top: 7px;
 }
 
 #searchbar{
