@@ -1,4 +1,3 @@
-from os import sendfile
 from flask import Flask, render_template, send_file, request, json
 
 import scripts
