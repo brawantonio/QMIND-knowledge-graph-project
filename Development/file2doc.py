@@ -6,7 +6,7 @@ import sys
 #import re
 #from PIL import Image
 #import fitz
-from tkinter import Tk, filedialog
+from tkinter import Tk, filedialog#, tkFileDialog
 
 
 #-----------checking for dependencies--------------------------
@@ -136,4 +136,6 @@ def get_dirpath():
     root.attributes('-topmost', True) # Opened windows will be active. above all windows despite of selection.
 
     dirpath = filedialog.askdirectory()+'/' # Returns opened path as str
+    #dirpath = tkFileDialog.askopenfilename() #FIX THIS TO ADMIT FILES
+
     return dirpath

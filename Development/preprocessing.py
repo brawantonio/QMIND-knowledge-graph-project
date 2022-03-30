@@ -47,7 +47,27 @@ def stdtextpreprocessing(text):
     text = ' '.join([wn.lemmatize(word) for word in text.split(' ')])
     return text
 
-
+def preproc_query(query):
+    wn = nltk.WordNetLemmatizer()
+    # Lower case
+    query = query.lower()
+    # Remove unicode characters (emojis, etc.)
+    query = query.encode('ascii', 'ignore').decode('utf-8')
+    # Reduce repeated letters
+    query= re.sub(re.compile(r"(.)\1{2,}"), r"\1\1", query)
+    # Remove stop words
+    pat = r'\b(?:{})\b'.format('|'.join(stop))
+    query = re.sub(pat, '', query)
+    # Remove punctuation
+    query = re.sub('[%s]' % re.escape(string.punctuation), ' ', query)
+    # Remove stop words again (in case stop word was next to punctuation)
+    query = re.sub(pat, '', query)
+    # Remove extra blank spaces
+    query = re.sub(r'\s{2,}', ' ', query)
+    # Lemmatize and tokenize
+    query = [wn.lemmatize(word) for word in query.split()]
+    
+    return query
 #import re
 #import nltk
 #from nltk.corpus import stopwords
