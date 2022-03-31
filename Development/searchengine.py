@@ -66,7 +66,7 @@ def search(query):
     # Select columns
     df = df[["url", "pca_x", "pca_y", "cos_dist"]]
 
-    result = df.to_json(orient="split")
+    result = df.to_json(orient="records")
     parsed = json.loads(result)
     return json.dumps(parsed)
 
