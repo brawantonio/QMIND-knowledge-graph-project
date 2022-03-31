@@ -31,7 +31,7 @@ Output: query (list of string) - cleaned text
 # Convert string to vec
 def search(query):
     model = Doc2Vec.load(os.getcwd() + '/hazelnut_kingston') 
-    df = pd.read_csv("/Users/braulioantonio/Documents/Python/Hazelnut/search_database.csv", 
+    df = pd.read_csv("./search_database.csv", 
                 usecols=["url", "clean_text", "text_vec"] )
     #query = "Queen's university"
     query = preprocessing.preproc_query(query)
