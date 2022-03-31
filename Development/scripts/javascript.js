@@ -4,7 +4,7 @@ function clk()  {
     xhr.responseType = "text";
     xhr.onload = function(e) {
         console.log(JSON.parse(xhr.response))
-       // graph(JSON.parse(xhr.response));
+        graph(JSON.parse(xhr.response));
         document.getElementById("blurbtext").innerHTML = "Success!"
     }
     xhr.onerror = function(e) {
@@ -26,17 +26,20 @@ function graph(jsonobjlist) {
       console.log(jsonobjlist[i])
       urls.push(jsonobjlist[i]["url"]);
       labels.push(jsonobjlist[i]["url"].split("/")[6]);
-      coords.push({
-          x:jsonobjlist[i]["Pcx"],
-          y:jsonobjlist[i]["Pcy"]
-      });
-      cos.push(jsonobjlist[i]["Cos"]);
-  }
 
-  console.log(urls)
-  console.log(labels)
-  console.log(coords)
-  console.log(cos)
+      // TRANSLATIONS
+        // x = (1-cos_dist)cos(4*atan2(Pca_x,Pca_y))
+        // y = (1-cos_dist)sin(4*atan2(Pca_x,Pca_y))
+      let pca_x = jsonobjlist[i]["pca_x"]
+      let pca_y = jsonobjlist[i]["pca_y"]
+      let cos_dist = jsonobjlist[i]["cos_dist"]
+
+      coords.push({
+          x: (1-cos_dist) * Math.cos( 4 * Math.atan2(pca_x, pca_y) ),
+          y: (1-cos_dist) * Math.sin( 4 * Math.atan2(pca_x, pca_y) )
+      });
+      cos.push(jsonobjlist[i]["cos_dist"]);
+  }
 
   const radius = 4
 
@@ -86,6 +89,11 @@ function graph(jsonobjlist) {
               ctx.fillText(ds.labels[i], meta_mod.x - textWidth/2, meta_mod.y - 2 * radius - (11));
               
             }
+            
+            //ctx.fillText(document.getElementById("searchbar").value, ctx.width/2, ctx.height/2);
+
+
+
         }
       }
 

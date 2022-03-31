@@ -11,9 +11,9 @@ def processText(text):
             ascii_sum = ascii_sum + ord(c)
             obj =  {
                 "url": "https://www.cityofkingston.ca/documents/10180/7273601/" + word + "/2b7ea9d3-245f-40b8-9be2-2139632fe1e8",
-                "Pcx" : ord(c),
-                "Pcy" : ascii_sum,
-                "Cos" : ascii_sum / ord(c)
+                "pca_x" : ord(c),
+                "pca_y" : ascii_sum,
+                "cos_dist" : ascii_sum / ord(c)
              }
         col.append(obj)
        
