@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import ast
 #from IPython.display import display
 import os
 import json
@@ -32,7 +33,9 @@ Output: query (list of string) - cleaned text
 def search(query):
     model = Doc2Vec.load(os.getcwd() + '/hazelnut_kingston') 
     df = pd.read_csv("./search_database.csv", 
-                usecols=["url", "clean_text", "text_vec"] )
+                usecols=["url", "text_vec"])
+
+    df["text_vec"] = df["text_vec"].apply(lambda x: ast.literal_eval(x))
     #query = "Queen's university"
     query = preprocessing.preproc_query(query)
     query = model.infer_vector(query)
@@ -40,9 +43,10 @@ def search(query):
     # Convert to np array
     query = np.array(query)
 
+    
     # nearest neighbors----------------------------------------------------------------
     df["cos_dist"] = df["text_vec"].apply(lambda x: np.dot(query, np.array(x)) / 
-                                      (np.linalg.norm(query) * np.linalg.norm(np.array(x))))
+                                         (np.linalg.norm(query) * np.linalg.norm(np.array(x))))
     df = df.sort_values(by=["cos_dist"], ascending=False, ignore_index=True)
     # Take top N results
     N = 10
