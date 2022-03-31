@@ -1,7 +1,7 @@
 from flask import Flask, render_template, send_file, request, json
 
-# import scripts
-from scripts.test import processText
+import scripts
+#from scripts.test import processText
 from searchengine import search
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ def test():
     
     text = request.args.get('text')
 
-    data = processText(text)
+    data = scripts.test.processText(text)
     
     response = app.response_class(
             response=data,
