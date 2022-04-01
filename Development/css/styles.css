@@ -34,7 +34,7 @@ body {
 }
 
 .loader {
-    border: 10px solid #f3f3f3; /* Light grey */
+    border: 10px solid #b7b7b7; /* Light grey */
     border-top: 10px solid rgb(56,211,164); /* Blue */
     border-radius: 50%;
     width: 50px;
@@ -110,9 +110,15 @@ body {
     margin-right: auto;
     display: block;
     width: 100%;
-    outline: black 1px solid;
     border-radius: 10pt;
     padding: 10pt;
+    filter: drop-shadow(0 0 0.15rem black);
+
+}
+
+#chart1.active{
+    transition: filter .2s ease-out;
+    filter: drop-shadow(0 0 0.25rem black);
 }
 
 

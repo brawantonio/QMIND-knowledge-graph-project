@@ -1,13 +1,14 @@
 function clk()  {
     rev_load();
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "/searchengine?text=" + document.getElementById("searchbar").value, true);
+    xhr.open("GET", "/test?text=" + document.getElementById("searchbar").value, true);
     xhr.responseType = "text";
     xhr.onload = function(e) {
         console.log(JSON.parse(xhr.response))
         graph(JSON.parse(xhr.response));
         document.getElementById("blurbtext").innerHTML = "Success!"
         hide_load();
+        document.getElementById("chart1").className="active";
     }
     xhr.onerror = function(e) {
         console.log(xhr.response);
@@ -44,14 +45,18 @@ function graph(jsonobjlist) {
       cos.push(jsonobjlist[i]["cos_dist"]);
   }
 
-  const radius = 6
+
+  var pointRadius=[];
 
   // Getting context and setting the graph 
   const data =  {
       datasets: [{
         label: "Query Response",
         labels: labels,
-        data: coords
+        data: coords,
+        pointStyle: 'circle',
+        pointBackgroundColor: "rgb(36,124,142)",
+        pointRadius: pointRadius
       }]
   };
 
@@ -62,6 +67,10 @@ function graph(jsonobjlist) {
     data: data,
 
     options: {
+
+      hover: {
+        mode: null,
+      },
 
       response: true,
 
@@ -76,32 +85,26 @@ function graph(jsonobjlist) {
 
       showLines: false,
 
-      elements: {
-        point: {
-          pointStyle: 'circle',
-          borderColor: "rgb(65,160,123)",
-          backgroundColor: "rgb(36,124,142)",
-          radius: radius
-        }
-      },
-
       scales:{
-        y:{
-          beginAtZero:true,
-          ticks:{
-            display:false
-          }
-        },
         yAxes:[{
+          beginAtZero:true,
           gridLines:{
             drawBorder:false,
             display:false
+          },
+          ticks:{
+            display:false,
           }
+          
         }],
         xAxes:[{
+          beginAtZero:true,
           gridLines:{
             drawBorder:false,
             display:false
+          },
+          ticks:{
+            display:false,
           }
         }]
       },
@@ -129,16 +132,31 @@ function graph(jsonobjlist) {
 
             const ds = chart.data.datasets[0];
             const len = ds.data.length
-            console.log(len)
 
             for(var i = 0; i < len; i++){
               var meta_mod = chart.getDatasetMeta(0).data[i]._model
-              const textWidth = ctx.measureText(ds.labels[i]).width
-              ctx.fillText(ds.labels[i], meta_mod.x - textWidth/2, meta_mod.y - (2*radius) - 5);
+              const textWidth1 = ctx.measureText(ds.labels[i]).width
+              ctx.fillText(ds.labels[i], meta_mod.x - textWidth1/2, meta_mod.y - (2*pointRadius[i]));
               
             }
-            //ctx.fillText(document.getElementById("searchbar").value, ctx.width/2, ctx.height/2);
-        }
+
+            let qtext = document.getElementById("searchbar").value
+            qtext = qtext.split(" ");
+
+            for (let i = 0; i < qtext.length; i++) {
+                qtext[i] = qtext[i][0].toUpperCase() + qtext[i].substr(1);
+            }
+
+            qtext = qtext.join(" ");
+            
+
+            const textWidth2 = ctx.measureText(qtext).width
+
+            ctx.fillText(qtext, chart.chart.width/2 - textWidth2/2, chart.chart.height/2);
+
+            
+        
+         }
       }
 
   };
@@ -148,8 +166,18 @@ function graph(jsonobjlist) {
     config
   );
 
+  let baseRad = 6
+  for(var i=0; i < cos.length ; i = i + 1){
+    pointRadius.push((cos[i] + 1) * baseRad);
+  }
+
+  myChart.update()
+
+
 
 }
+
+
 
 document.getElementById("searchbar").addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
