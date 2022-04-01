@@ -1,4 +1,5 @@
 function clk()  {
+    rev_load();
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/searchengine?text=" + document.getElementById("searchbar").value, true);
     xhr.responseType = "text";
@@ -6,10 +7,12 @@ function clk()  {
         console.log(JSON.parse(xhr.response))
         graph(JSON.parse(xhr.response));
         document.getElementById("blurbtext").innerHTML = "Success!"
+        hide_load();
     }
     xhr.onerror = function(e) {
         console.log(xhr.response);
         document.getElementById("blurbtext").innerHTML = "AJAX Failed"
+        hide_load();
     }
     xhr.send();
 }
@@ -41,7 +44,7 @@ function graph(jsonobjlist) {
       cos.push(jsonobjlist[i]["cos_dist"]);
   }
 
-  const radius = 4
+  const radius = 6
 
   // Getting context and setting the graph 
   const data =  {
@@ -53,15 +56,26 @@ function graph(jsonobjlist) {
   };
 
   const config =  {
+
     type:'scatter',
+
     data: data,
+
     options: {
+
       response: true,
+
       title: {
         display: false,
         text: 'Original Data'
       },
+
+      legend:{
+        display:false
+      },
+
       showLines: false,
+
       elements: {
         point: {
           pointStyle: 'circle',
@@ -70,6 +84,40 @@ function graph(jsonobjlist) {
           radius: radius
         }
       },
+
+      scales:{
+        y:{
+          beginAtZero:true,
+          ticks:{
+            display:false
+          }
+        },
+        yAxes:[{
+          gridLines:{
+            drawBorder:false,
+            display:false
+          }
+        }],
+        xAxes:[{
+          gridLines:{
+            drawBorder:false,
+            display:false
+          }
+        }]
+      },
+
+
+      onClick(e) {
+       
+        const activePoints = myChart.getElementsAtEventForMode(e, 'nearest', {
+          intersect: true
+        }, false)
+
+        //console.log(urls[activePoints[0]._index])
+        window.location.href = urls[activePoints[0]._index];
+
+      }
+
     },
     
     plugins: {
@@ -86,14 +134,10 @@ function graph(jsonobjlist) {
             for(var i = 0; i < len; i++){
               var meta_mod = chart.getDatasetMeta(0).data[i]._model
               const textWidth = ctx.measureText(ds.labels[i]).width
-              ctx.fillText(ds.labels[i], meta_mod.x - textWidth/2, meta_mod.y - 2 * radius - (11));
+              ctx.fillText(ds.labels[i], meta_mod.x - textWidth/2, meta_mod.y - (2*radius) - 5);
               
             }
-            
             //ctx.fillText(document.getElementById("searchbar").value, ctx.width/2, ctx.height/2);
-
-
-
         }
       }
 
@@ -180,3 +224,19 @@ var voice = {
     }
   };
   window.addEventListener("DOMContentLoaded", voice.init);
+
+
+
+function rev_load(){
+  document.querySelector(".loading-overlay").hidden                  = false
+  document.querySelector(".loading-overlay-image-container").hidden  = false
+}
+
+function hide_load(){
+  document.querySelector(".loading-overlay").hidden                  = true
+  document.querySelector(".loading-overlay-image-container").hidden  = true
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    hide_load()
+});
