@@ -2,7 +2,6 @@ from flask import Flask, render_template, send_file, request, json
 
 import scripts
 #from scripts.test import processText
-from searchengine import search
 
 app = Flask(__name__)
 
@@ -28,20 +27,6 @@ def test():
     text = request.args.get('text')
 
     data = scripts.test.processText(text)
-    
-    response = app.response_class(
-            response=data,
-            status=200,
-            mimetype='application/text'
-    )
-    
-    return response
-
-@app.route("/searchengine")
-def search_result_return():
-    text = request.args.get('text')
-
-    data = search(text)
     
     response = app.response_class(
             response=data,
